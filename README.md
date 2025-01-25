@@ -6,7 +6,29 @@
 This project will demonstrate the technical feasibility of the AEDIST project.
 It will be short lived, we aim to apply for a proof of concept by January 2025.
 
+## Critères du CNRS pour la pré-sélection scientifique du projet :
 
+• Le projet doit partir d'un concept nouveau…
+ o La nouveauté, l’originalité /rupture scientifique est un critère important – le positionnement doit être nouveau
+par rapport à l’état de l’art scientifique.
+• …et qui a été clairement démontré
+o Le principe de base du concept - qui ouvre la voie à des applications possibles (mais pas encore explorées
+en détail) - doit être clairement démontré (expérimentalement). La partie recherche a été réalisée et validée,
+ce qui n’engage pas nécessairement la faisabilité du concept pour des applications concrètes.
+• L'innovation envisagée n'est pas une innovation "incrémentale"
+o L'innovation ne doit pas consister en une idée qu'un ingénieur de l'industrie aurait pu avoir en extrapolant
+simplement des connaissances existantes. Il doit s'agir d'une innovation résultant d'un principe connu
+exclusivement de scientifiques qui font de la recherche amont.
+• Une attention particulière est portée à l’impact sociétal dans le cas des projets SHS où l’innovation est en général
+motivée par les nouveaux besoins ou usages, tout en s’appuyant sur un assemblage de technologies, de méthodes ou
+de savoir-faire…
+• L'impact socioéconomique déjà identifié
+o Avoir la capacité d’exprimer la valeur ajoutée du produit ou service, sa différenciation avec les
+produits/services commerciaux.
+…et qui a été clairement démontré
+o Le principe de base du concept - qui ouvre la voie à des applications possibles (mais pas encore explorées
+en détail) - doit être clairement démontré (expérimentalement). La partie recherche a été réalisée et validée,
+ce qui n’engage pas nécessairement la faisabilité du concept pour des applications concrètes.
 
 
 ***
