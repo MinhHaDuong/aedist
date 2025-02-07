@@ -191,7 +191,7 @@ def pdf_to_markdown(pdf_path):
 
     return "\n".join(markdown_pieces)
 
-
+# TODO: keep OCRed page numbers as a comment
 # TODO: Deal with running headers
 # TODO: Merge continued tables. Could be as simple as stripping </table>\n<!-- PDF Page ## -->\n<!-- PageContinues --><table>. Use a string constant for the PageContinues marker.
 
