@@ -1,0 +1,191 @@
+Province,Fuel,Name (File 1),Name (File 2),Capacity (File 1),Capacity (File 2),Difference (MW),Status
+an giang,coal,NMNĐ Long Phú I,N/A,1200.0,N/A,N/A,Only in File 1
+ba ria - vung tau,gas,N/A,Bà Rịa GT,N/A,46.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,LNG Bà Rịa 2,N/A,1200.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,LNG Cái Mép Hạ,N/A,6000.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,LNG Long Sơn,N/A,1200.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,LNG Long Sơn II+III,N/A,3200.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,LNG Long Sơn IV (địa điểm Tây),N/A,3600.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,LNG Phú Mỹ 3.1,N/A,850.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Bà Rịa 1,N/A,169.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Bà Rịa 2,N/A,175.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Phú Mỹ 1,N/A,1140.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Phú Mỹ 2.1,N/A,499.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Phú Mỹ 2.1 MR,N/A,450.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Phú Mỹ 2.2,N/A,740.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Phú Mỹ 3,N/A,740.0,N/A,Only in File 2
+ba ria - vung tau,gas,N/A,TBKHH Phú Mỹ 4,N/A,468.0,N/A,Only in File 2
+ba ria–vung tau,coal,NMNĐ Vĩnh Tân III,N/A,1980.0,N/A,N/A,Only in File 1
+ba ria–vung tau,imported gas,NMNĐ Nhơn Trạch 3 và Nhơn Trạch 4,N/A,1624.0,N/A,N/A,Only in File 1
+ba ria–vung tau,imported gas,LNG Hiệp Phước giai đoạn I,N/A,1200.0,N/A,N/A,Only in File 1
+bac giang,coal,NMNĐ An Khánh - Bắc Giang,An Khánh - Bac Giang,650.0,650.0,0.0,Matched (Fuzzy)
+bac giang,coal,N/A,Son Dong,N/A,220.0,N/A,Only in File 2
+bac lieu,coal,N/A,Bạc Liêu 1,N/A,1200.0,N/A,Only in File 2
+bac lieu,gas,N/A,LNG Bạc Liêu,N/A,3200.0,N/A,Only in File 2
+bac lieu,imported gas,LNG Bạc Liêu,N/A,3200.0,N/A,N/A,Only in File 1
+ben tre,gas,N/A,LNG Bến Tre,N/A,3000.0,N/A,Only in File 2
+binh thuan,coal,N/A,Vinh Tan 1,N/A,1200.0,N/A,Only in File 2
+binh thuan,coal,N/A,Vinh Tan 2,N/A,1244.0,N/A,Only in File 2
+binh thuan,coal,N/A,Vinh Tan 3,N/A,1980.0,N/A,Only in File 2
+binh thuan,coal,N/A,Vinh Tan 4,N/A,1200.0,N/A,Only in File 2
+binh thuan,coal,N/A,Vinh Tan 4 extension,N/A,600.0,N/A,Only in File 2
+binh thuan,gas,N/A,LNG Mũi Kê Gà 1,N/A,1200.0,N/A,Only in File 2
+binh thuan,gas,N/A,"LNG Mũi Kê Gà 2,3",N/A,2400.0,N/A,Only in File 2
+binh thuan,gas,N/A,LNG Sơn Mỹ I,N/A,2250.0,N/A,Only in File 2
+binh thuan,gas,N/A,LNG Sơn Mỹ II,N/A,2250.0,N/A,Only in File 2
+binh đinh,gas,N/A,LNG Bình Định,N/A,5000.0,N/A,Only in File 2
+ca mau,gas,N/A,Cà Mau I,N/A,771.0,N/A,Only in File 2
+ca mau,gas,N/A,Cà Mau II,N/A,771.0,N/A,Only in File 2
+ca mau,gas,N/A,LNG Cà Mau 1,N/A,1500.0,N/A,Only in File 2
+ca mau,gas,N/A,"LNG Cà Mau 2,3",N/A,3000.0,N/A,Only in File 2
+ca mau,gas,N/A,LNG Sông Đốc (Cà Mau),N/A,3000.0,N/A,Only in File 2
+ca mau,gas,N/A,"LNG Tân Thuận – Đầm Dơi, Cà Mau",N/A,3200.0,N/A,Only in File 2
+ca mau,imported gas,LNG Cà Ná,N/A,1500.0,N/A,N/A,Only in File 1
+can tho,gas,N/A,TBKHH Ô Môn I,N/A,660.0,N/A,Only in File 2
+can tho,gas,N/A,TBKHH Ô Môn II,N/A,1050.0,N/A,Only in File 2
+can tho,gas,N/A,TBKHH Ô Môn III,N/A,1050.0,N/A,Only in File 2
+can tho,gas,N/A,TBKHH Ô Môn IV,N/A,1050.0,N/A,Only in File 2
+can tho,gas/oil,N/A,NĐ Cần Thơ,N/A,165.0,N/A,Only in File 2
+can tho,gas/oil,N/A,NĐ Ô Môn I,N/A,660.0,N/A,Only in File 2
+can tho,local gas,Nhiệt điện Ô Môn I*,N/A,660.0,N/A,N/A,Only in File 1
+can tho,local gas,NMNĐ Ô Môn II,N/A,1050.0,N/A,N/A,Only in File 1
+can tho,local gas,NMNĐ Ô Môn III,N/A,1050.0,N/A,N/A,Only in File 1
+can tho,local gas,NMNĐ Ô Môn IV,N/A,1050.0,N/A,N/A,Only in File 1
+ha tinh,coal,N/A,Formosa HT2,N/A,650.0,N/A,Only in File 2
+ha tinh,coal,N/A,Ha Tinh Formosa Plastics Steel Complex,N/A,450.0,N/A,Only in File 2
+ha tinh,coal,N/A,Ha Tinh Formosa Plastics Steel Complex,N/A,450.0,N/A,Only in File 2
+ha tinh,coal,N/A,Vung Ang 1,N/A,1200.0,N/A,Only in File 2
+ha tinh,coal,N/A,Vung Ang 2,N/A,1330.0,N/A,Only in File 2
+ha tinh,coal,N/A,Vung Ang 3,N/A,2400.0,N/A,Only in File 2
+ha tinh,gas,N/A,LNG Hà Tĩnh,N/A,6000.0,N/A,Only in File 2
+hai duong,coal,N/A,Hai Duong,N/A,1200.0,N/A,Only in File 2
+hai duong,coal,N/A,Phả Lại 1,N/A,440.0,N/A,Only in File 2
+hai duong,coal,N/A,Phả Lại 2,N/A,600.0,N/A,Only in File 2
+hai duong,coal,N/A,Phả Lại 3,N/A,660.0,N/A,Only in File 2
+hai phong,coal,N/A,Hai Phong 1,N/A,600.0,N/A,Only in File 2
+hai phong,coal,N/A,Hai Phong 2,N/A,600.0,N/A,Only in File 2
+hai phong,coal,N/A,Hai Phong 3,N/A,1200.0,N/A,Only in File 2
+hai phong,gas,N/A,Hải Phòng,N/A,500.0,N/A,Only in File 2
+hai phong,gas,N/A,LNG Hải Phòng 1 (Tiên Lãng),N/A,4500.0,N/A,Only in File 2
+hai phong,gas,N/A,LNG Hải Phòng 2 (Cát Hải),N/A,1600.0,N/A,Only in File 2
+hai phong,gas,N/A,LNG Hải Phòng 3 (Cát Hải),N/A,4500.0,N/A,Only in File 2
+hai phong,gas,N/A,LNG Hải Phòng 4 (Đồ Sơn),N/A,4500.0,N/A,Only in File 2
+hau giang,coal,N/A,Lee & Man,N/A,125.0,N/A,Only in File 2
+hau giang,coal,N/A,Sông Hậu 1,N/A,1200.0,N/A,Only in File 2
+hau giang,coal,N/A,Sông Hậu 2,N/A,2000.0,N/A,Only in File 2
+"hiep phuoc 2, ben tre, mui ke ga, ca mau,",gas,N/A,LNG miền Nam,N/A,1500.0,N/A,Only in File 2
+hue,gas,N/A,LNG Chân Mây,N/A,4000.0,N/A,Only in File 2
+hue,gas,N/A,LNG Phong Điền – Huế,N/A,3000.0,N/A,Only in File 2
+khanh hoa,coal,N/A,Vân Phong 1,N/A,1432.0,N/A,Only in File 2
+khanh hoa,gas,N/A,LNG Mỹ Giang,N/A,6000.0,N/A,Only in File 2
+khanh hoa,gas,N/A,LNG Vân Phong (J-Power),N/A,3000.0,N/A,Only in File 2
+khanh hoa,gas,N/A,LNG Vân Phong (Mỹ Giang) phase 1,N/A,3000.0,N/A,Only in File 2
+khanh hoa,gas,N/A,LNG Vân Phong (Mỹ Giang) phase 2,N/A,3000.0,N/A,Only in File 2
+kien giang,gas,N/A,"TBKHH Kiên Giang I, II",N/A,1500.0,N/A,Only in File 2
+lang son,coal,N/A,Na Dương 1,N/A,110.0,N/A,Only in File 2
+lang son,coal,N/A,Na Dương 2,N/A,110.0,N/A,Only in File 2
+lao cai,coal,N/A,Duc Giang - Lao Cai Chemical,N/A,100.0,N/A,Only in File 2
+long an,coal,NMNĐ Vân Phong I,Long An 2,1432.0,1600.0,-168.0,Mismatched
+long an,coal,N/A,Long An 1,N/A,1200.0,N/A,Only in File 2
+long an,gas,N/A,LNG Long An I,N/A,1500.0,N/A,Only in File 2
+long an,gas,N/A,LNG Long An I phase 2,N/A,1500.0,N/A,Only in File 2
+long an,gas,N/A,LNG Long An II,N/A,1500.0,N/A,Only in File 2
+long an,gas,N/A,LNG Long An II phase 2,N/A,1500.0,N/A,Only in File 2
+long an,imported gas,LNG Long An I,N/A,1500.0,N/A,N/A,Only in File 1
+nam dinh,coal,N/A,Nam Dinh 1,N/A,1200.0,N/A,Only in File 2
+nam đinh,coal,NMNĐ Nam Định I,N/A,1200.0,N/A,N/A,Only in File 1
+nghe an,coal,NMNĐ Vũng Áng II,Quỳnh Lập 2,1330.0,1200.0,130.0,Mismatched
+nghe an,coal,N/A,Quỳnh Lập 1,N/A,1200.0,N/A,Only in File 2
+nghe an,gas,N/A,LNG Quỳnh Lập,N/A,1500.0,N/A,Only in File 2
+nghe an,imported gas,LNG Quỳnh Lập/ Nghi Sơn,N/A,1500.0,N/A,N/A,Only in File 1
+ninh binh,coal,NMNĐ Na Dương II,Ninh Binh,110.0,100.0,10.0,Mismatched
+ninh thuan,gas,N/A,LNG Cà Ná,N/A,1500.0,N/A,Only in File 2
+ninh thuan,gas,N/A,LNG Cà Ná II+III,N/A,4500.0,N/A,Only in File 2
+ninh thuan,gas,N/A,Ninh Thuan Novatek project,N/A,4500.0,N/A,Only in File 2
+quang binh,coal,N/A,Quảng Trạch 1,N/A,1400.0,N/A,Only in File 2
+quang binh,coal,N/A,Quảng Trạch 2,N/A,1200.0,N/A,Only in File 2
+quang binh,gas,N/A,LNG Quảng Bình,N/A,3000.0,N/A,Only in File 2
+quang binh,gas,N/A,LNG Quảng Trạch 2,N/A,1500.0,N/A,Only in File 2
+quang nam,coal,N/A,Nong Son 1,N/A,30.0,N/A,Only in File 2
+quang nam,gas,N/A,LNG Núi Thành (Quảng Nam),N/A,3200.0,N/A,Only in File 2
+quang nam,gas,N/A,LNG Quảng Nam,N/A,4000.0,N/A,Only in File 2
+quang nam,gas,N/A,TBKHH miền Trung I,N/A,750.0,N/A,Only in File 2
+quang nam,gas,N/A,TBKHH miền Trung II,N/A,750.0,N/A,Only in File 2
+quang nam,local gas,TBKHH Miền Trung I,N/A,750.0,N/A,N/A,Only in File 1
+quang nam,local gas,TBKHH Miền Trung II,N/A,750.0,N/A,N/A,Only in File 1
+quang ngai,coal,N/A,Dung Quat Special Economic Zone (J-Power) Phase I,N/A,2400.0,N/A,Only in File 2
+quang ngai,coal,N/A,Dung Quat Special Economic Zone (J-Power) Phase II,N/A,2000.0,N/A,Only in File 2
+quang ngai,gas,N/A,TBKHH Dung Quất I,N/A,750.0,N/A,Only in File 2
+quang ngai,gas,N/A,TBKHH Dung Quất II,N/A,750.0,N/A,Only in File 2
+quang ngai,gas,N/A,TBKHH Dung Quất III,N/A,750.0,N/A,Only in File 2
+quang ngai,local gas,TBKHH Dung Quất I,N/A,750.0,N/A,N/A,Only in File 1
+quang ngai,local gas,TBKHH Dung Quất II,N/A,750.0,N/A,N/A,Only in File 1
+quang ngai,local gas,TBKHH Dung Quất III,N/A,750.0,N/A,N/A,Only in File 1
+quang ninh,coal,N/A,Cam Pha 3,N/A,440.0,N/A,Only in File 2
+quang ninh,coal,N/A,Cẩm Phả 1,N/A,340.0,N/A,Only in File 2
+quang ninh,coal,N/A,Cẩm Phả 2,N/A,340.0,N/A,Only in File 2
+quang ninh,coal,N/A,Hai Ha CHP Phase 1,N/A,150.0,N/A,Only in File 2
+quang ninh,coal,N/A,Hai Ha CHP Phase 2,N/A,750.0,N/A,Only in File 2
+quang ninh,coal,N/A,Hai Ha CHP Phase 3,N/A,600.0,N/A,Only in File 2
+quang ninh,coal,N/A,Hai Ha CHP Phase 4,N/A,600.0,N/A,Only in File 2
+quang ninh,coal,N/A,Mao Khe,N/A,440.0,N/A,Only in File 2
+quang ninh,coal,N/A,Mong Duong 1,N/A,1080.0,N/A,Only in File 2
+quang ninh,coal,N/A,Mong Duong 2,N/A,1240.0,N/A,Only in File 2
+quang ninh,coal,N/A,Quang Ninh 1,N/A,600.0,N/A,Only in File 2
+quang ninh,coal,N/A,Quang Ninh 2,N/A,600.0,N/A,Only in File 2
+quang ninh,coal,N/A,Quang Ninh 3,N/A,1200.0,N/A,Only in File 2
+quang ninh,coal,N/A,Thang Long,N/A,600.0,N/A,Only in File 2
+quang ninh,coal,N/A,Uong Bi I,N/A,105.0,N/A,Only in File 2
+quang ninh,coal,N/A,Uong Bi I extension,N/A,300.0,N/A,Only in File 2
+quang ninh,coal,N/A,Uong Bi II extension,N/A,330.0,N/A,Only in File 2
+quang ninh,gas,N/A,LNG Quảng Ninh 1 (Cẩm Phả),N/A,1500.0,N/A,Only in File 2
+quang ninh,gas,N/A,LNG Quảng Ninh 2 (Cẩm Phả),N/A,1500.0,N/A,Only in File 2
+quang ninh,gas,N/A,LNG Quảng Ninh 3 (Quảng Yên),N/A,4500.0,N/A,Only in File 2
+quang ninh,gas,N/A,LNG Quảng Ninh 4 (Hải Hà),N/A,3000.0,N/A,Only in File 2
+quang ninh,imported gas,LNG Quảng Ninh,N/A,1500.0,N/A,N/A,Only in File 1
+quang tri,coal,NMNĐ Quảng Trạch I,Quảng Trị 2,1403.0,1200.0,203.0,Mismatched
+quang tri,coal,NMNĐ Quảng Trị,Quảng Trị 1,1320.0,1320.0,0.0,Matched (Fuzzy)
+quang tri,gas,N/A,LNG Hải Lăng,N/A,1500.0,N/A,Only in File 2
+quang tri,gas,N/A,LNG Hải Lăng (2 and 3),N/A,4500.0,N/A,Only in File 2
+quang tri,gas,N/A,Quảng Trị – Huế area,N/A,4000.0,N/A,Only in File 2
+quang tri,gas,N/A,TBKHH Quảng Trị (khí Báo Vàng),N/A,340.0,N/A,Only in File 2
+quang tri,imported gas,LNG Quảng Trạch II,N/A,1500.0,N/A,N/A,Only in File 1
+quang tri,imported gas,LNG Hải Lăng giai đoạn 1,N/A,1500.0,N/A,N/A,Only in File 1
+quang tri,local gas,TBKHH Quảng Trị,N/A,340.0,N/A,N/A,Only in File 1
+soc trang,coal,N/A,Long Phú 1,N/A,1200.0,N/A,Only in File 2
+soc trang,coal,N/A,Long Phú 2,N/A,1320.0,N/A,Only in File 2
+soc trang,coal,N/A,Long Phú 3,N/A,1800.0,N/A,Only in File 2
+thai binh,coal,N/A,Thái Bình 1,N/A,600.0,N/A,Only in File 2
+thai binh,coal,N/A,Thái Bình 2,N/A,1200.0,N/A,Only in File 2
+thai binh,gas,N/A,LNG Thái Bình,N/A,4500.0,N/A,Only in File 2
+thai binh,imported gas,LNG Thái Bình,N/A,1500.0,N/A,N/A,Only in File 1
+"thai binh, nam đinh, nghi son, thanh hoa",gas,N/A,NĐ LNG miền Bắc,N/A,0.0,N/A,Only in File 2
+thai nguyen,coal,N/A,An Khánh 1,N/A,116.0,N/A,Only in File 2
+thai nguyen,coal,N/A,Cao Ngạn,N/A,114.0,N/A,Only in File 2
+thanh hoa,coal,NĐ Cẩm Thanh,Nghi Son 1,600.0,600.0,0.0,Mismatched
+thanh hoa,coal,N/A,Cong Thanh,N/A,600.0,N/A,Only in File 2
+thanh hoa,coal,N/A,Nghi Son 2,N/A,1200.0,N/A,Only in File 2
+thanh hoa,gas,N/A,LNG Nghi Sơn (Thanh Hóa),N/A,5000.0,N/A,Only in File 2
+thanh hoa,imported gas,LNG Nghi Sơn,N/A,1500.0,N/A,N/A,Only in File 1
+thanh hoa,imported gas,NMNĐ Sơn Mỹ II,N/A,2250.0,N/A,N/A,Only in File 1
+thanh hoa,imported gas,NMNĐ BOT Sơn Mỹ I,N/A,2250.0,N/A,N/A,Only in File 1
+tien giang,gas,N/A,LNG Tân Phước,N/A,4500.0,N/A,Only in File 2
+tien giang,gas,N/A,Tân Phước 1,N/A,1200.0,N/A,Only in File 2
+tien giang,gas,N/A,Tân Phước 2,N/A,1200.0,N/A,Only in File 2
+tp ho chi minh,gas,N/A,LNG Hiệp Phước (phase I),N/A,1200.0,N/A,Only in File 2
+tp ho chi minh,gas,N/A,LNG Hiệp Phước (phase II),N/A,1500.0,N/A,Only in File 2
+tp ho chi minh,gas,N/A,NĐ Thủ Đức,N/A,290.0,N/A,Only in File 2
+tp ho chi minh,gas/oil,N/A,NĐ Hiệp Phước,N/A,310.0,N/A,Only in File 2
+tra vinh,coal,N/A,Duyen Hai 1,N/A,1244.0,N/A,Only in File 2
+tra vinh,coal,N/A,Duyen Hai 2,N/A,600.0,N/A,Only in File 2
+tra vinh,coal,N/A,Duyen Hai 3,N/A,1244.0,N/A,Only in File 2
+tra vinh,coal,N/A,Duyen Hai 3 Extension,N/A,660.0,N/A,Only in File 2
+tra vinh,coal,N/A,Duyên Hải 2,N/A,1200.0,N/A,Only in File 2
+đong nai,coal,N/A,Dong Nai Formosa,N/A,150.0,N/A,Only in File 2
+đong nai,coal,N/A,Dong Nai Formosa,N/A,300.0,N/A,Only in File 2
+đong nai,coal,N/A,Vedan Vietnam Cogeneration power station,N/A,60.0,N/A,Only in File 2
+đong nai,gas,N/A,LNG Nhơn Trạch 3,N/A,750.0,N/A,Only in File 2
+đong nai,gas,N/A,LNG Nhơn Trạch 4,N/A,750.0,N/A,Only in File 2
+đong nai,gas,N/A,TBKHH Nhơn Trạch I,N/A,465.0,N/A,Only in File 2
+đong nai,gas,N/A,TBKHH Nhơn Trạch II,N/A,750.0,N/A,Only in File 2
+đong thap,coal,NMNĐ Sông Hậu II,N/A,2120.0,N/A,N/A,Only in File 1
