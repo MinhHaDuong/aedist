@@ -10,5 +10,9 @@ query:
 	uv run python -m aedist.query \
 	    --prompt $(PROMPT) --models $(MODELS) --output $(OUTPUT)/
 
+extract:
+	uv run python -m aedist.extract \
+	    --input $(OUTPUT)/ --output $(OUTPUT)/
+
 evaluate:
-	uv run python -m aedist.runner evaluate-all
+	uv run python -m aedist.runner evaluate-all --outputs-dir $(OUTPUT)
