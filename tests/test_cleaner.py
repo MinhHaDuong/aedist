@@ -1,13 +1,13 @@
 import pytest
 import pandas as pd
 import json
-from cleaner import PowerPlantDataframeCleaner
+from aedist.cleaner import PowerPlantDataframeCleaner
 
 
 @pytest.fixture
 def cleaner():
     """Fixture to initialize the cleaner with a test JSON configuration."""
-    return PowerPlantDataframeCleaner("config.json")
+    return PowerPlantDataframeCleaner("src/aedist/cleaner/config.json")
 
 
 def test_validate_dataframe_valid(cleaner):

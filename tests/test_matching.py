@@ -5,7 +5,7 @@ import pandas as pd
 # Parameterize the fixture over both implementations to run after this change.
 @pytest.fixture(params=["lp", "phased"])
 def reconcile(request):
-    module = importlib.import_module(request.param)
+    module = importlib.import_module(f"aedist.matching.{request.param}")
     return module.reconcile
 
 def test_exact_match(reconcile):
