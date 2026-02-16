@@ -39,6 +39,8 @@ htmlcov/
 *~
 
 # Project-specific working directories
+outputs/
+results/
 pdfOCR2md/reserve/
 pdfOCR2md/prod/
 pdfOCR2md/test/
