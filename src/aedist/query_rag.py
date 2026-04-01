@@ -1,14 +1,17 @@
-"""Query LLMs via OpenRouter and save results.
+"""RAG (Retrieval-Augmented Generation) queries against LLMs.
+
+Wholesale strategy: concatenate all corpus documents as system context,
+then send the prompt as user message. Checks corpus size against model
+context window before querying.
 
 Usage:
-    python -m aedist.query --prompt prompts/prompt1.txt \
-                           --models models.yaml \
-                           --output outputs/sweep1/
-    python -m aedist.query --prompt prompts/prompt1.txt \
-                           --models models.yaml \
-                           --output outputs/sweep1/ \
-                           --model deepseek/deepseek-r1 \
-                           --repeat 3 --budget-usd 5
+    python -m aedist.query_rag \
+        --prompt prompts/prompt_structured.txt \
+        --corpus data/rag_corpus/ \
+        --strategy wholesale \
+        --models models.yaml \
+        --output outputs/sweep2_rag/ \
+        --repeat 3
 """
 
 import argparse
@@ -32,9 +35,32 @@ from .harness import (
 log = logging.getLogger(__name__)
 
 
+def load_corpus(corpus_dir: Path) -> tuple[str, list[str]]:
+    """Load all .md files from corpus directory, return (text, filenames)."""
+    files = sorted(corpus_dir.glob("*.md"))
+    if not files:
+        raise SystemExit(f"No .md files found in {corpus_dir}")
+
+    parts = []
+    names = []
+    for f in files:
+        parts.append(f.read_text().strip())
+        names.append(f.name)
+
+    return "\n---\n".join(parts), names
+
+
+def estimate_tokens(text: str) -> int:
+    """Rough token estimate: ~4 chars per token for English text."""
+    return len(text) // 4
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Query LLMs via OpenRouter")
+    parser = argparse.ArgumentParser(description="RAG queries via OpenRouter")
     parser.add_argument("--prompt", required=True, help="Path to prompt text file")
+    parser.add_argument("--corpus", required=True, help="Directory containing .md corpus files")
+    parser.add_argument("--strategy", default="wholesale", choices=["wholesale"],
+                        help="RAG strategy (currently only 'wholesale')")
     parser.add_argument("--models", required=True, help="Path to models.yaml")
     parser.add_argument("--output", required=True, help="Output directory for results")
     parser.add_argument("--model", help="Query only this model (OpenRouter ID)")
@@ -46,10 +72,13 @@ def main():
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
     prompt = Path(args.prompt).read_text().strip()
+    corpus_text, corpus_files = load_corpus(Path(args.corpus))
+    corpus_tokens = estimate_tokens(corpus_text)
     models = load_models(args.models)
     output_dir = Path(args.output)
 
-    # Filter to single model if requested
+    log.info("Corpus: %d files, ~%d tokens", len(corpus_files), corpus_tokens)
+
     if args.model:
         models = [m for m in models if m["id"] == args.model]
         if not models:
@@ -57,8 +86,10 @@ def main():
 
     if args.dry_run:
         for model in models:
+            ctx = model.get("context_window", 0)
+            fits = "OK" if corpus_tokens < ctx * 0.8 else "SKIP (too large)"
             for run in range(1, args.repeat + 1):
-                log.info("Would query %s run %d", model["id"], run)
+                log.info("Would query %s run %d [%s]", model["id"], run, fits)
         return
 
     client = make_client()
@@ -67,6 +98,15 @@ def main():
     for model in models:
         model_id = model["id"]
         label = model.get("name", model_id)
+        ctx_window = model.get("context_window", 0)
+
+        # Context window guard
+        if corpus_tokens > ctx_window * 0.8:
+            log.warning(
+                "Skip %s: corpus ~%d tokens exceeds 80%% of context window (%d)",
+                label, corpus_tokens, ctx_window,
+            )
+            continue
 
         for run in range(1, args.repeat + 1):
             if not budget.check_or_warn():
@@ -76,12 +116,15 @@ def main():
                 log.info("Skip %s run %d (cached)", label, run)
                 continue
 
-            log.info("Querying %s run %d/%d...", label, run, args.repeat)
+            log.info("Querying %s run %d/%d (RAG %s)...",
+                     label, run, args.repeat, args.strategy)
+
             try:
-                result = query_single_turn(
-                    client, model_id,
-                    [{"role": "user", "content": prompt}],
-                )
+                messages = [
+                    {"role": "system", "content": corpus_text},
+                    {"role": "user", "content": prompt},
+                ]
+                result = query_single_turn(client, model_id, messages)
                 usage = result.get("usage") or {}
                 cost = compute_cost(usage, model)
                 budget.add(cost)
@@ -89,8 +132,11 @@ def main():
                 filepath = day_dir(output_dir) / output_filename(model_id, run)
                 record = {
                     "model": model_id,
-                    "date": date.today().isoformat(),
                     "run": run,
+                    "date": date.today().isoformat(),
+                    "strategy": args.strategy,
+                    "corpus_files": corpus_files,
+                    "corpus_tokens": corpus_tokens,
                     "prompt": prompt,
                     "response": result["content"],
                     "finish_reason": result["finish_reason"],
@@ -103,21 +149,6 @@ def main():
                 log.info("  Done. cost=%.6f total=%.6f USD", cost, budget.total_cost)
             except Exception as e:
                 log.error("Error querying %s run %d: %s", label, run, e)
-                filepath = day_dir(output_dir) / output_filename(model_id, run)
-                record = {
-                    "model": model_id,
-                    "date": date.today().isoformat(),
-                    "run": run,
-                    "prompt": prompt,
-                    "response": None,
-                    "finish_reason": "error",
-                    "error": str(e),
-                    "usage": None,
-                    "wall_seconds": 0.0,
-                    "cost_usd": 0.0,
-                    "model_metadata": model_metadata(model),
-                }
-                save_json(filepath, record)
 
     log.info("Completed. Total cost: %.6f USD", budget.total_cost)
 

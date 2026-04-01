@@ -4,11 +4,8 @@ Computes coverage (recall), precision, justification rate,
 and error taxonomy from a reconciliation table.
 """
 
-from __future__ import annotations
-
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Optional
 
 from .schema import MatchType, ReconciliationEntry
 
@@ -40,16 +37,16 @@ class BenchmarkMetrics:
     n_hallucinated: int = 0
 
     # Attribute accuracy (among matched entries)
-    fuel_accuracy: Optional[float] = None
-    status_accuracy: Optional[float] = None
-    province_accuracy: Optional[float] = None
-    capacity_match_rate: Optional[float] = None
+    fuel_accuracy: float | None = None
+    status_accuracy: float | None = None
+    province_accuracy: float | None = None
+    capacity_match_rate: float | None = None
 
     # Error taxonomy counts
     errors: dict[str, int] = field(default_factory=dict)
 
     # Justification (to be filled externally)
-    justification_rate: Optional[float] = None
+    justification_rate: float | None = None
 
 
 def compute_metrics(entries: list[ReconciliationEntry]) -> BenchmarkMetrics:
@@ -74,7 +71,7 @@ def compute_metrics(entries: list[ReconciliationEntry]) -> BenchmarkMetrics:
     n_exact = type_counts.get(MatchType.EXACT, 0) + type_counts.get(MatchType.EXACT_CAPACITY_DIFF, 0)
     n_fuzzy = type_counts.get(MatchType.FUZZY, 0) + type_counts.get(MatchType.FUZZY_CAPACITY_DIFF, 0)
 
-    def _accuracy(attr: str) -> Optional[float]:
+    def _accuracy(attr: str) -> float | None:
         checks = [getattr(e, attr) for e in matched if getattr(e, attr) is not None]
         return round(sum(checks) / len(checks), 4) if checks else None
 

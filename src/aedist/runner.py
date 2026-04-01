@@ -5,8 +5,6 @@ Usage:
     aedist evaluate-all [--output-dir <dir>]
 """
 
-from __future__ import annotations
-
 import argparse
 import csv
 import json

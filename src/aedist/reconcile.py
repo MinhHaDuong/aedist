@@ -8,8 +8,6 @@ For manual review, the output includes province and fuel columns so results
 can be sorted/filtered by province+fuel after the fact.
 """
 
-from __future__ import annotations
-
 import importlib.resources
 from pathlib import Path
 
