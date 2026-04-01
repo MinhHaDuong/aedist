@@ -5,10 +5,7 @@ and for system outputs. All evaluation is performed on normalized instances
 of these models.
 """
 
-from __future__ import annotations
-
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -40,16 +37,16 @@ class Plant(BaseModel):
     name: str = Field(..., description="Canonical plant name.")
     fuel: FuelType = Field(default=FuelType.UNKNOWN)
     status: PlantStatus = Field(default=PlantStatus.UNKNOWN)
-    cod: Optional[str] = Field(default=None, description="Connection date (year or YYYY-MM-DD).")
-    province: Optional[str] = Field(default=None)
-    capacity_mwe: Optional[float] = Field(default=None, ge=0)
+    cod: str | None = Field(default=None, description="Connection date (year or YYYY-MM-DD).")
+    province: str | None = Field(default=None)
+    capacity_mwe: float | None = Field(default=None, ge=0)
 
 
 class SourcedPlant(Plant):
     """Plant entry with provenance information, for system outputs."""
 
     sources: list[str] = Field(default_factory=list)
-    confidence: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    confidence: float | None = Field(default=None, ge=0.0, le=1.0)
 
 
 class MatchType(str, Enum):
@@ -64,17 +61,17 @@ class MatchType(str, Enum):
 class ReconciliationEntry(BaseModel):
     """One row in the reconciliation table."""
 
-    reference_name: Optional[str] = None
-    system_name: Optional[str] = None
-    reference_province: Optional[str] = None
-    system_province: Optional[str] = None
-    reference_fuel: Optional[str] = None
-    system_fuel: Optional[str] = None
-    reference_capacity_mwe: Optional[float] = None
-    system_capacity_mwe: Optional[float] = None
-    capacity_diff_pct: Optional[float] = None
+    reference_name: str | None = None
+    system_name: str | None = None
+    reference_province: str | None = None
+    system_province: str | None = None
+    reference_fuel: str | None = None
+    system_fuel: str | None = None
+    reference_capacity_mwe: float | None = None
+    system_capacity_mwe: float | None = None
+    capacity_diff_pct: float | None = None
     match_type: MatchType = MatchType.REFERENCE_ONLY
-    fuel_match: Optional[bool] = None
-    status_match: Optional[bool] = None
-    province_match: Optional[bool] = None
+    fuel_match: bool | None = None
+    status_match: bool | None = None
+    province_match: bool | None = None
     notes: str = ""

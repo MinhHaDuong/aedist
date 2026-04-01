@@ -12,8 +12,6 @@ Usage:
   python -m aedist.extract --input outputs/llm_direct/2026-02-16 --output outputs/llm_direct
 """
 
-from __future__ import annotations
-
 import argparse
 import csv
 import io
