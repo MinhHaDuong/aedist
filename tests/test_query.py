@@ -41,7 +41,7 @@ def _prompt_file(tmp_path: Path) -> Path:
     return p
 
 
-@patch("aedist.query.OpenAI")
+@patch("aedist.harness.OpenAI")
 def test_repeat_produces_n_files(mock_openai_cls, tmp_path):
     """--repeat 3 produces 3 JSON files per model."""
     mock_client = MagicMock()
@@ -69,7 +69,7 @@ def test_repeat_produces_n_files(mock_openai_cls, tmp_path):
     assert stems == ["tiny-model-run1", "tiny-model-run2", "tiny-model-run3"]
 
 
-@patch("aedist.query.OpenAI")
+@patch("aedist.harness.OpenAI")
 def test_output_json_has_operational_metrics(mock_openai_cls, tmp_path):
     """Output JSON includes wall_seconds, cost_usd, model_metadata, run."""
     mock_client = MagicMock()
@@ -101,7 +101,7 @@ def test_output_json_has_operational_metrics(mock_openai_cls, tmp_path):
     assert record["run"] == 1
 
 
-@patch("aedist.query.OpenAI")
+@patch("aedist.harness.OpenAI")
 def test_budget_guard_stops(mock_openai_cls, tmp_path):
     """--budget-usd stops when budget exceeded."""
     mock_client = MagicMock()
@@ -132,7 +132,7 @@ def test_budget_guard_stops(mock_openai_cls, tmp_path):
     assert len(json_files) >= 1, "Should produce at least 1 file"
 
 
-@patch("aedist.query.OpenAI")
+@patch("aedist.harness.OpenAI")
 def test_dry_run_no_api_calls(mock_openai_cls, tmp_path):
     """--dry-run lists models but makes no API calls."""
     mock_client = MagicMock()
@@ -157,7 +157,7 @@ def test_dry_run_no_api_calls(mock_openai_cls, tmp_path):
     assert len(json_files) == 0
 
 
-@patch("aedist.query.OpenAI")
+@patch("aedist.harness.OpenAI")
 def test_skip_existing_files(mock_openai_cls, tmp_path):
     """Existing files are skipped — no duplicate API calls."""
     mock_client = MagicMock()
