@@ -1,21 +1,19 @@
 # aedist/Makefile — Reproducible experiment pipeline
 #
 # Each sweep is defined by a YAML config in sweeps/.
-# The Makefile reads the config and calls the appropriate query script.
+# Output files are Make targets: prompt or model list change → re-query.
 #
 # Usage:
-#   make -j8 sweep1          # All OpenRouter + Padme models, 3 runs each
-#   make -j4 sweep1-padme    # Padme only
+#   make -j8 sweep1          # All models, 3 runs each (parallel)
+#   make -j4 sweep1-padme    # Padme local models only
 #   make sweep1-summary      # Extract → evaluate → summarize
-#   make -j8 sweep2          # All information regimes (requires sweep1 done)
 #
-# Dependencies tracked: prompt or models change → affected outputs regenerate.
+# Adding a model to models.yaml → `make sweep1` queries only the new model.
 
 SHELL := /bin/bash
 .SHELLFLAGS := -o pipefail -c
 
-# --- Read sweep configs via Python helper ------------------------------------
-# Usage: $(call cfg,sweep1_census,field)
+# --- Read sweep configs ------------------------------------------------------
 cfg = $(shell python3 -c "import yaml; c=yaml.safe_load(open('sweeps/$(1).yaml')); print(c.get('$(2)',''))")
 
 # --- Sweep 1: Model census ---------------------------------------------------
@@ -27,22 +25,22 @@ S1_BUDGET  := $(call cfg,sweep1_census,budget_usd)
 S1_OUTPUT  := $(call cfg,sweep1_census,output)
 
 S1P_MODELS := $(call cfg,sweep1_padme,models)
-S1P_URL    := $(call cfg,sweep1_padme,ollama_url)
 
-# One stamp file per model = "this model has been queried"
+# Model short names → output file targets
 S1_OR_SHORTS  = $(shell python3 -c "import yaml; ms=yaml.safe_load(open('$(S1_MODELS)')); print(' '.join(m['id'].split('/')[-1].replace(':','-') for m in ms))")
 S1_PAD_SHORTS = $(shell python3 -c "import yaml; ms=yaml.safe_load(open('$(S1P_MODELS)')); print(' '.join(m['id'].replace(':','-') for m in ms))")
 
-S1_OR_STAMPS  = $(patsubst %,$(S1_OUTPUT)/.stamp-%,$(S1_OR_SHORTS))
-S1_PAD_STAMPS = $(patsubst %,$(S1_OUTPUT)/.stamp-padme-%,$(S1_PAD_SHORTS))
+# Target: {output}/{model}-run{n}.json — one file per model per run
+S1_OR_JSONS  = $(foreach m,$(S1_OR_SHORTS),$(foreach r,1 2 3,$(S1_OUTPUT)/$(m)-run$(r).json))
+S1_PAD_JSONS = $(foreach m,$(S1_PAD_SHORTS),$(foreach r,1 2 3,$(S1_OUTPUT)/padme-$(m)-run$(r).json))
 
 .PHONY: sweep1 sweep1-openrouter sweep1-padme sweep1-summary
 
 sweep1: sweep1-openrouter sweep1-padme
 
-sweep1-openrouter: $(S1_OR_STAMPS)
+sweep1-openrouter: $(S1_OR_JSONS)
 
-sweep1-padme: $(S1_PAD_STAMPS)
+sweep1-padme: $(S1_PAD_JSONS)
 
 sweep1-summary:
 	uv run python -m aedist.extract --input $(S1_OUTPUT) --output $(S1_OUTPUT)
@@ -53,26 +51,33 @@ sweep1-summary:
 	    --queries $(S1_OUTPUT) \
 	    --output results/sweep1_census/summary.csv
 
-# OpenRouter: query one model (3 runs), touch stamp
-$(S1_OUTPUT)/.stamp-%: $(S1_PROMPT) $(S1_MODELS) sweeps/sweep1_census.yaml
-	$(eval FULL_ID := $(shell python3 -c "import yaml; ms=yaml.safe_load(open('$(S1_MODELS)')); hits=[m['id'] for m in ms if m['id'].split('/')[-1].replace(':','-')=='$*']; print(hits[0] if hits else '')"))
-	@if [ -z "$(FULL_ID)" ]; then echo "SKIP $*"; exit 0; fi
+# OpenRouter: query.py --repeat 3 produces all 3 run files in one call.
+# Grouped target (GNU Make 4.3+): one recipe produces all 3 files.
+define or_rule
+$(S1_OUTPUT)/$(1)-run1.json $(S1_OUTPUT)/$(1)-run2.json $(S1_OUTPUT)/$(1)-run3.json &: $(S1_PROMPT) $(S1_MODELS) sweeps/sweep1_census.yaml
+	$$(eval FULL_ID := $$(shell python3 -c "import yaml; ms=yaml.safe_load(open('$(S1_MODELS)')); hits=[m['id'] for m in ms if m['id'].split('/')[-1].replace(':','-')=='$(1)']; print(hits[0] if hits else '')"))
+	@if [ -z "$$(FULL_ID)" ]; then echo "SKIP $(1)"; exit 0; fi
 	uv run python -m aedist.query \
 	    --prompt $(S1_PROMPT) --models $(S1_MODELS) \
 	    --output $(S1_OUTPUT) --repeat $(S1_REPEAT) \
-	    --budget-usd $(S1_BUDGET) --model $(FULL_ID)
-	@mkdir -p $(dir $@) && touch $@
+	    --budget-usd $(S1_BUDGET) --model $$(FULL_ID)
+endef
 
-# Padme: query one local model (3 runs), touch stamp
-$(S1_OUTPUT)/.stamp-padme-%: $(S1_PROMPT) $(S1P_MODELS) sweeps/sweep1_padme.yaml
-	$(eval OLLAMA_ID := $(shell python3 -c "import yaml; ms=yaml.safe_load(open('$(S1P_MODELS)')); hits=[m['id'] for m in ms if m['id'].replace(':','-')=='$*']; print(hits[0] if hits else '')"))
-	@if [ -z "$(OLLAMA_ID)" ]; then echo "SKIP padme/$*"; exit 0; fi
+$(foreach m,$(S1_OR_SHORTS),$(eval $(call or_rule,$(m))))
+
+# Padme: query_padme.py --repeat 3 produces all 3 files.
+define padme_rule
+$(S1_OUTPUT)/padme-$(1)-run1.json $(S1_OUTPUT)/padme-$(1)-run2.json $(S1_OUTPUT)/padme-$(1)-run3.json &: $(S1_PROMPT) $(S1P_MODELS) sweeps/sweep1_padme.yaml
+	$$(eval OLLAMA_ID := $$(shell python3 -c "import yaml; ms=yaml.safe_load(open('$(S1P_MODELS)')); hits=[m['id'] for m in ms if m['id'].replace(':','-')=='$(1)']; print(hits[0] if hits else '')"))
+	@if [ -z "$$(OLLAMA_ID)" ]; then echo "SKIP padme/$(1)"; exit 0; fi
 	uv run python scripts/query_padme.py \
 	    --prompt $(S1_PROMPT) --output $(S1_OUTPUT) \
-	    --repeat $(S1_REPEAT) --model $(OLLAMA_ID)
-	@mkdir -p $(dir $@) && touch $@
+	    --repeat $(S1_REPEAT) --model $$(OLLAMA_ID)
+endef
 
-# --- Sweep 2: Information regimes (top 5 from sweep 1) -----------------------
+$(foreach m,$(S1_PAD_SHORTS),$(eval $(call padme_rule,$(m))))
+
+# --- Sweep 2: Information regimes ---------------------------------------------
 
 S2MT_PROMPT := $(call cfg,sweep2_multiturn,prompt)
 S2MT_FOLLOW := $(call cfg,sweep2_multiturn,followups)
@@ -120,16 +125,13 @@ sweep2-web:
 
 # --- Utility -----------------------------------------------------------------
 
-.PHONY: help clean
+.PHONY: help
 
 help:
 	@echo "Sweeps:"
 	@echo "  make -j8 sweep1           Census: all models × 3 runs"
-	@echo "  make -j4 sweep1-padme     Census: local models only"
+	@echo "  make -j4 sweep1-padme     Padme local models only"
 	@echo "  make sweep1-summary       Extract + evaluate + summarize"
 	@echo "  make sweep2               All information regimes"
 	@echo ""
 	@echo "Config files in sweeps/*.yaml"
-
-clean:
-	rm -f outputs/*/.stamp-*

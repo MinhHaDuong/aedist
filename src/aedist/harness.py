@@ -9,7 +9,6 @@ import json
 import logging
 import os
 import time
-from datetime import date
 from pathlib import Path
 
 import yaml
@@ -102,21 +101,19 @@ def make_client() -> OpenAI:
 
 def output_filename(model_id: str, run: int) -> str:
     """Generate output filename: {short_name}-run{n}.json."""
-    short = model_id.split("/")[-1]
+    short = model_id.split("/")[-1].replace(":", "-")
     return f"{short}-run{run}.json"
 
 
-def day_dir(output_dir: Path) -> Path:
-    """Return today's date subdirectory, creating it if needed."""
-    d = output_dir / date.today().isoformat()
-    d.mkdir(parents=True, exist_ok=True)
-    return d
+def output_path(output_dir: Path, model_id: str, run: int) -> Path:
+    """Return the full output path for a model run."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return output_dir / output_filename(model_id, run)
 
 
 def should_skip(output_dir: Path, model_id: str, run: int) -> bool:
     """Return True if the output file already exists."""
-    filepath = day_dir(output_dir) / output_filename(model_id, run)
-    return filepath.exists()
+    return output_path(output_dir, model_id, run).exists()
 
 
 # ---------------------------------------------------------------------------

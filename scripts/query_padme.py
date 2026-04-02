@@ -48,7 +48,7 @@ def main():
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
     prompt = Path(args.prompt).read_text().strip()
-    output_dir = Path(args.output) / date.today().isoformat()
+    output_dir = Path(args.output)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     models = PADME_MODELS
