@@ -20,11 +20,11 @@ from pathlib import Path
 from .harness import (
     BudgetTracker,
     compute_cost,
-    day_dir,
+    output_path,
     load_models,
     make_client,
     model_metadata,
-    output_filename,
+
     query_single_turn,
     save_json,
     should_skip,
@@ -160,7 +160,7 @@ def main():
                 if conv is None:
                     return
 
-                filepath = day_dir(output_dir) / output_filename(model_id, run)
+                filepath = output_path(output_dir, model_id, run)
                 record = {
                     "model": model_id,
                     "run": run,

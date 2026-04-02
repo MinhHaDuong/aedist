@@ -19,11 +19,10 @@ from pathlib import Path
 from .harness import (
     BudgetTracker,
     compute_cost,
-    day_dir,
     load_models,
     make_client,
     model_metadata,
-    output_filename,
+    output_path,
     query_single_turn,
     save_json,
     should_skip,
@@ -86,7 +85,7 @@ def main():
                 cost = compute_cost(usage, model)
                 budget.add(cost)
 
-                filepath = day_dir(output_dir) / output_filename(model_id, run)
+                filepath = output_path(output_dir, model_id, run)
                 record = {
                     "model": model_id,
                     "date": date.today().isoformat(),
@@ -103,7 +102,7 @@ def main():
                 log.info("  Done. cost=%.6f total=%.6f USD", cost, budget.total_cost)
             except Exception as e:
                 log.error("Error querying %s run %d: %s", label, run, e)
-                filepath = day_dir(output_dir) / output_filename(model_id, run)
+                filepath = output_path(output_dir, model_id, run)
                 record = {
                     "model": model_id,
                     "date": date.today().isoformat(),

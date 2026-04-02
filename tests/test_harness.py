@@ -72,7 +72,5 @@ def test_should_skip_false(tmp_path):
 
 
 def test_should_skip_true(tmp_path):
-    from aedist.harness import day_dir
-    d = day_dir(tmp_path)
-    (d / "model-run1.json").write_text("{}")
+    (tmp_path / "model-run1.json").write_text("{}")
     assert should_skip(tmp_path, "test/model", 1)
