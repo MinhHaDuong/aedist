@@ -57,7 +57,7 @@ def main():
         if not models:
             raise SystemExit(f"Model {args.model} not in PADME_MODELS")
 
-    client = OpenAI(base_url="http://padme:11434/v1", api_key="ollama")
+    client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
 
     for model in models:
         model_id = model["id"]
